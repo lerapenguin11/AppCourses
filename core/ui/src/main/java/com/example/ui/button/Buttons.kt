@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.designsystem.icon.Icons
 import com.example.designsystem.theme.AppTheme
 import com.example.ui.button.style.MainButtonDefault
 import com.example.ui.button.style.MainButtonStyleImpl
@@ -107,6 +109,26 @@ fun SocialAuthButton(
     }
 }
 
+@Composable
+fun BookmarkButton(
+    isFavorite: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier
+            .background(
+                color = AppTheme.colors.glass.copy(alpha = 70f),
+                shape = RoundedCornerShape(size = 20.dp)
+            )
+            .padding(all = 6.dp)
+    ) {
+        Icon(
+            painter = painterResource(id = if (isFavorite) Icons.BookmarkFill else Icons.Bookmark),
+            contentDescription = null,
+            tint = if (isFavorite) AppTheme.colors.green else AppTheme.colors.white
+        )
+    }
+}
 
 @Preview
 @Composable
@@ -140,5 +162,11 @@ private fun ButtonsPreview() {
                 onClick = {}
             )
         }
+        BookmarkButton(
+            isFavorite = true
+        )
+        BookmarkButton(
+            isFavorite = false
+        )
     }
 }
