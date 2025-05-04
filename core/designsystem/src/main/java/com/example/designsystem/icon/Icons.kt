@@ -7,4 +7,5 @@ object Icons {
     val OkLogo = CommonDrawables.ic_ok
     val Bookmark = CommonDrawables.ic_bookmark
     val BookmarkFill = CommonDrawables.ic_bookmark_fill
+    val StarFill = CommonDrawables.ic_star_fill
 }

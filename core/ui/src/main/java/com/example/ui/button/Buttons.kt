@@ -117,7 +117,7 @@ fun BookmarkButton(
     Box(
         modifier = modifier
             .background(
-                color = AppTheme.colors.glass.copy(alpha = 70f),
+                color = AppTheme.colors.glass.copy(alpha = 0.7f),
                 shape = RoundedCornerShape(size = 20.dp)
             )
             .padding(all = 6.dp)
