@@ -1,4 +1,4 @@
-package com.example.ui.button.style
+package com.example.ui.button.style.param
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,33 +1,43 @@
 package com.example.ui.button
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.theme.AppTheme
 import com.example.ui.button.style.MainButtonDefault
-import com.example.ui.button.style.MainButtonStyle
+import com.example.ui.button.style.MainButtonStyleImpl
+import com.example.ui.button.style.SocialAuthButtonDefault
+import com.example.ui.button.style.SocialAuthButtonStyleImpl
 import com.example.ui.button.variant.MainButtonVariant
+import com.example.ui.button.variant.SocialAuthButtonVariant
 
 @Composable
 fun MainButton(
     text: String,
     variant: MainButtonVariant,
     modifier: Modifier = Modifier,
-    style: MainButtonStyle = MainButtonDefault.default(),
+    style: MainButtonStyleImpl = MainButtonDefault.default(),
     onClick: () -> Unit,
 ) {
     Button(
@@ -36,6 +46,7 @@ fun MainButton(
         colors = ButtonDefaults.buttonColors(
             containerColor = style.getBackgroundColor(variant = variant)
         ),
+        shape = RoundedCornerShape(size = 30.dp),
         contentPadding = PaddingValues(vertical = 10.dp),
         onClick = onClick,
     ) {
@@ -66,21 +77,68 @@ fun TextButton(
     )
 }
 
+@Composable
+fun SocialAuthButton(
+    variant: SocialAuthButtonVariant,
+    modifier: Modifier = Modifier,
+    style: SocialAuthButtonStyleImpl = SocialAuthButtonDefault.default(),
+    onClick: () -> Unit,
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 40.dp)
+            .background(
+                brush = style.getBackgroundButton(variant = variant),
+                shape = RoundedCornerShape(size = 30.dp)
+            )
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(),
+                onClick = { onClick() }
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            painter = painterResource(id = style.getIconButton(variant = variant)),
+            contentDescription = null,
+            tint = Color.White
+        )
+    }
+}
+
+
 @Preview
 @Composable
 private fun ButtonsPreview() {
-    Column {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
         MainButton(
             variant = MainButtonVariant.Secondary,
             onClick = {},
             text = "Начать курс"
         )
-        Spacer(modifier = Modifier.height(10.dp))
         TextButton(
             text = "Забыл пароль",
             onClick = {}
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            SocialAuthButton(
+                modifier = Modifier
+                    .weight(1f),
+                variant = SocialAuthButtonVariant.Vk,
+                onClick = {}
+            )
+            SocialAuthButton(
+                modifier = Modifier
+                    .weight(1f),
+                variant = SocialAuthButtonVariant.Ok,
+                onClick = {}
+            )
+        }
     }
-
 }

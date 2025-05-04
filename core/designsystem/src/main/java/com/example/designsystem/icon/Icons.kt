@@ -1,5 +1,8 @@
 package com.example.designsystem.icon
 
-object Icons {
+import com.example.designsystem.utils.CommonDrawables
 
+object Icons {
+    val VkLogo = CommonDrawables.ic_vk
+    val OkLogo = CommonDrawables.ic_ok
 }

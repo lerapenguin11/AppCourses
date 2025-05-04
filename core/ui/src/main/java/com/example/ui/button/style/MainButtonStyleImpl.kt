@@ -3,9 +3,10 @@ package com.example.ui.button.style
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.example.designsystem.theme.AppTheme
+import com.example.ui.button.style.param.MainButtonStyleParams
 import com.example.ui.button.variant.MainButtonVariant
 
-class MainButtonStyle(private val param: MainButtonStyleParams): ButtonStyle {
+class MainButtonStyleImpl(private val param: MainButtonStyleParams): MainButtonStyle {
     override fun getBackgroundColor(variant: MainButtonVariant): Color {
         return when(variant){
             MainButtonVariant.Primary -> param.primaryColorButton
@@ -19,8 +20,8 @@ internal object MainButtonDefault {
     fun default(
         primaryColorButton: Color = AppTheme.colors.green,
         secondaryColorButton: Color = AppTheme.colors.darkGray,
-    ): MainButtonStyle {
-        return MainButtonStyle(
+    ): MainButtonStyleImpl {
+        return MainButtonStyleImpl(
             param = MainButtonStyleParams(
                 primaryColorButton = primaryColorButton,
                 secondaryColorButton = secondaryColorButton,
@@ -29,6 +30,6 @@ internal object MainButtonDefault {
     }
 }
 
-private interface ButtonStyle {
+private interface MainButtonStyle {
     fun getBackgroundColor(variant: MainButtonVariant): Color
 }
