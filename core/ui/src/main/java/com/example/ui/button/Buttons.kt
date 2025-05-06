@@ -33,6 +33,7 @@ import com.example.ui.button.style.SocialAuthButtonDefault
 import com.example.ui.button.style.SocialAuthButtonStyleImpl
 import com.example.ui.button.variant.MainButtonVariant
 import com.example.ui.button.variant.SocialAuthButtonVariant
+import com.example.ui.button.variant.TextButtonVariant
 
 @Composable
 fun MainButton(
@@ -63,6 +64,7 @@ fun MainButton(
 @Composable
 fun TextButton(
     text: String,
+    variant: TextButtonVariant,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
@@ -74,7 +76,10 @@ fun TextButton(
                 onClick = { onClick() }
             ),
         text = text,
-        style = AppTheme.typography.buttonSmall,
+        style = when(variant){
+            TextButtonVariant.Small -> AppTheme.typography.buttonSmall
+            TextButtonVariant.Medium -> AppTheme.typography.button
+        },
         color = AppTheme.colors.green,
     )
 }
@@ -143,7 +148,8 @@ private fun ButtonsPreview() {
         )
         TextButton(
             text = "Забыл пароль",
-            onClick = {}
+            onClick = {},
+            variant = TextButtonVariant.Medium
         )
         Row(
             modifier = Modifier.fillMaxWidth(),

@@ -23,3 +23,4 @@ rootProject.name = "Courses"
 include(":app")
 include(":core:ui")
 include(":core:designsystem")
+include(":core:resources")
