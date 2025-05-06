@@ -8,4 +8,5 @@ object Icons {
     val Bookmark = CommonDrawables.ic_bookmark
     val BookmarkFill = CommonDrawables.ic_bookmark_fill
     val StarFill = CommonDrawables.ic_star_fill
+    val ArrowRightShortFill = CommonDrawables.ic_arrow_right_short_fill
 }

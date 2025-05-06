@@ -41,6 +41,7 @@ android {
 
 dependencies {
     api(project(":core:designsystem"))
+    api(project(":core:resources"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.runtime)
@@ -50,6 +51,8 @@ dependencies {
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.material3)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     debugApi(libs.androidx.compose.ui.tooling)
 }
