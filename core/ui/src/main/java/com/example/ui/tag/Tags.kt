@@ -59,7 +59,7 @@ fun CommonTag(
             Text(
                 text = text,
                 style = AppTheme.typography.caption,
-                color = AppTheme.colors.white
+                color = AppTheme.colors.whiteOpacity
             )
         }
     }
@@ -75,7 +75,7 @@ private fun BluerContainer(
     Box(
         modifier = modifier
             .background(
-                color = AppTheme.colors.glass.copy(alpha = 0.7f),
+                color = AppTheme.colors.glass,
                 shape = RoundedCornerShape(size = 12.dp)
             )
             .blur(

@@ -56,7 +56,7 @@ fun MainButton(
         Text(
             text = text,
             style = AppTheme.typography.button,
-            color = AppTheme.colors.white,
+            color = AppTheme.colors.whiteOpacity,
         )
     }
 }
@@ -122,7 +122,7 @@ fun BookmarkButton(
     Box(
         modifier = modifier
             .background(
-                color = AppTheme.colors.glass.copy(alpha = 0.7f),
+                color = AppTheme.colors.glass,
                 shape = RoundedCornerShape(size = 20.dp)
             )
             .padding(all = 6.dp)
@@ -130,7 +130,7 @@ fun BookmarkButton(
         Icon(
             painter = painterResource(id = if (isFavorite) Icons.BookmarkFill else Icons.Bookmark),
             contentDescription = null,
-            tint = if (isFavorite) AppTheme.colors.green else AppTheme.colors.white
+            tint = if (isFavorite) AppTheme.colors.green else AppTheme.colors.whiteOpacity
         )
     }
 }

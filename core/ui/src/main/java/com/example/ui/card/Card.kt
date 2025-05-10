@@ -66,13 +66,13 @@ fun CourseCard(
         ) {
             Text(
                 text = title,
-                color = AppTheme.colors.white,
+                color = AppTheme.colors.whiteOpacity,
                 style = AppTheme.typography.titleMedium
             )
             VerticalSpacer(height = 12.dp)
             Text(
                 text = description,
-                color = AppTheme.colors.white,
+                color = AppTheme.colors.whiteOpacity,
                 style = AppTheme.typography.bodySmall,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
@@ -85,7 +85,7 @@ fun CourseCard(
                 Text(
                     modifier = Modifier.weight(1f),
                     text = "$price ₽",
-                    color = AppTheme.colors.white,
+                    color = AppTheme.colors.whiteOpacity,
                     style = AppTheme.typography.titleMedium
                 )
                 Row(
