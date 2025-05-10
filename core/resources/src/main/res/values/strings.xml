@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="more">Подробнее</string>
+    <string name="home">Главная</string>
+    <string name="favorite">Избранное</string>
+    <string name="profile">Аккаунт</string>
 </resources>

@@ -9,4 +9,7 @@ object Icons {
     val BookmarkFill = CommonDrawables.ic_bookmark_fill
     val StarFill = CommonDrawables.ic_star_fill
     val ArrowRightShortFill = CommonDrawables.ic_arrow_right_short_fill
+    val NavHome = CommonDrawables.ic_nav_home
+    val NavFavorite = CommonDrawables.ic_nav_favorite
+    val NavProfile = CommonDrawables.ic_nav_profile
 }
