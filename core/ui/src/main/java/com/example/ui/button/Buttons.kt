@@ -56,7 +56,7 @@ fun MainButton(
         Text(
             text = text,
             style = AppTheme.typography.button,
-            color = AppTheme.colors.whiteOpacity,
+            color = AppTheme.colors.white,
         )
     }
 }

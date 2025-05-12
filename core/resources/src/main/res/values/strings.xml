@@ -4,4 +4,14 @@
     <string name="home">Главная</string>
     <string name="favorite">Избранное</string>
     <string name="profile">Аккаунт</string>
+    <string name="registration">Регистрация</string>
+    <string name="email_label">Email</string>
+    <string name="email_placeholder">example@gmail.com</string>
+    <string name="first_password_label">Пароль</string>
+    <string name="first_password_placeholder">Введите пароль</string>
+    <string name="second_password_label">Повторить пароль</string>
+    <string name="second_password_placeholder">Введите пароль ещё раз</string>
+    <string name="already_have_account">Уже есть аккаунт?</string>
+    <string name="sign_in">Войти</string>
+    <string name="login">Вход</string>
 </resources>

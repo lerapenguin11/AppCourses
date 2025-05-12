@@ -18,10 +18,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.theme.AppTheme
+import com.example.ui.spacer.VerticalSpacer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommonInputs(
+    label: Int,
     value: String,
     placeholder: Int,
     modifier: Modifier = Modifier,
@@ -35,6 +37,12 @@ fun CommonInputs(
         focusedBorderColor = Color.Transparent,
         cursorColor = AppTheme.colors.whiteOpacity,
     )
+    Text(
+        text = stringResource(id = label),
+        color = AppTheme.colors.white,
+        style = AppTheme.typography.titleMedium,
+    )
+    VerticalSpacer(height = 8.dp)
     BasicTextField(
         modifier = modifier
             .fillMaxWidth()
@@ -83,6 +91,7 @@ private fun CommonInputsPreview() {
     CommonInputs(
         value = "",
         placeholder = com.example.resources.R.string.home,
-        onValueChange = {}
+        onValueChange = {},
+        label = com.example.resources.R.string.home,
     )
 }
