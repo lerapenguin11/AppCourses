@@ -25,12 +25,12 @@ import com.example.ui.spacer.VerticalSpacer
 internal fun AuthScreen(
     modifier: Modifier = Modifier,
 ) {
-    val screenType = AuthScreenType.Registration
+    val screenType = AuthScreenType.Login
     Column(
         modifier = modifier
             .padding(horizontal = 16.dp)
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
         VerticalSpacer(height = 100.dp)
         AuthScreenTitle(screenType = screenType)

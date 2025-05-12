@@ -14,4 +14,6 @@
     <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="sign_in">Войти</string>
     <string name="login">Вход</string>
+    <string name="no_account">Нету аккаунта?</string>
+    <string name="forgot_password">Забыл пароль</string>
 </resources>
