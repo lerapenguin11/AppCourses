@@ -15,4 +15,5 @@ object Icons {
     val Search = CommonDrawables.ic_search
     val Funnel = CommonDrawables.ic_funnel
     val ArrowDownUp = CommonDrawables.ic_arrow_down_up
+    val ArrowRight = CommonDrawables.ic_arrow_right
 }
