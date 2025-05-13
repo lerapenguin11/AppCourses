@@ -26,6 +26,7 @@ data class AppTypography(
     val buttonSmall: TextStyle,
     val bodySmall: TextStyle,
     val caption: TextStyle,
+    val roboto14: TextStyle,
 )
 
 val TypographyValue = AppTypography(
@@ -113,6 +114,17 @@ val TypographyValue = AppTypography(
             trim = LineHeightStyle.Trim.None
         ),
         letterSpacing = (0.4).sp
+    ),
+    roboto14 = TextStyle(
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 18.sp,
+        lineHeightStyle = LineHeightStyle(
+            alignment = LineHeightStyle.Alignment.Center,
+            trim = LineHeightStyle.Trim.None
+        ),
+        letterSpacing = (0.25).sp
     ),
 )
 

@@ -16,4 +16,6 @@
     <string name="login">Вход</string>
     <string name="no_account">Нету аккаунта?</string>
     <string name="forgot_password">Забыл пароль</string>
+    <string name="search_placeholder">Search courses...</string>
+    <string name="sort_date">По дате добавления</string>
 </resources>

@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.designsystem.icon.Icons
 import com.example.designsystem.theme.AppTheme
+import com.example.model.CourseUI
 import com.example.resources.R
 import com.example.ui.button.BookmarkButton
 import com.example.ui.button.TextButton
@@ -35,14 +36,7 @@ import com.example.ui.tag.variant.TagVariant
 
 @Composable
 fun CourseCard(
-    id: Int,
-    image: String?,
-    rate: String,
-    startDate: String,
-    isFavorite: Boolean,
-    title: String,
-    price: String,
-    description: String,
+    courseUI: CourseUI,
     modifier: Modifier = Modifier,
     openCourseCard: (Int) -> Unit,
 ) {
@@ -54,10 +48,10 @@ fun CourseCard(
     ) {
         CoursePreview(
             modifier = Modifier.padding(all = 8.dp),
-            image = image,
-            rate = rate,
-            startDate = startDate,
-            isFavorite = isFavorite,
+            image = courseUI.image,
+            rate = courseUI.rate,
+            startDate = courseUI.startDate,
+            isFavorite = courseUI.isFavorite,
         )
         VerticalSpacer(height = 16.dp)
         Column(
@@ -65,13 +59,13 @@ fun CourseCard(
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = title,
-                color = AppTheme.colors.whiteOpacity,
+                text = courseUI.title,
+                color = AppTheme.colors.white,
                 style = AppTheme.typography.titleMedium
             )
             VerticalSpacer(height = 12.dp)
             Text(
-                text = description,
+                text = courseUI.description,
                 color = AppTheme.colors.whiteOpacity,
                 style = AppTheme.typography.bodySmall,
                 maxLines = 2,
@@ -84,8 +78,8 @@ fun CourseCard(
             ) {
                 Text(
                     modifier = Modifier.weight(1f),
-                    text = "$price ₽",
-                    color = AppTheme.colors.whiteOpacity,
+                    text = "${courseUI.price} ₽",
+                    color = AppTheme.colors.white,
                     style = AppTheme.typography.titleMedium
                 )
                 Row(
@@ -96,7 +90,7 @@ fun CourseCard(
                     TextButton(
                         text = stringResource(id = R.string.more),
                         onClick = {
-                            openCourseCard(id)
+                            openCourseCard(courseUI.id)
                         },
                         variant = TextButtonVariant.Small
                     )
@@ -172,14 +166,16 @@ private fun CoursePreview(
 private fun CourseCardPreview() {
     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.Center) {
         CourseCard(
-            id = 1,
-            image = "https://i.pinimg.com/736x/b9/a7/55/b9a75516248779bead50d84c52daebf3.jpg",
-            rate = "4.9",
-            startDate = "22 Мая 2024",
-            isFavorite = true,
-            title = "Java-разработчик с нуля",
-            description = "Освойте backend-разработку \u2028и программирование на Java, фреймворки Spring и Maven, работу с базами данных и APIjjjjj. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании.",
-            price = "12 000",
+            CourseUI(
+                id = 1,
+                image = "https://i.pinimg.com/736x/b9/a7/55/b9a75516248779bead50d84c52daebf3.jpg",
+                rate = "4.9",
+                startDate = "22 Мая 2024",
+                isFavorite = true,
+                title = "Java-разработчик с нуля",
+                description = "Освойте backend-разработку \u2028и программирование на Java, фреймворки Spring и Maven, работу с базами данных и APIjjjjj. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании.",
+                price = "12 000",
+            ),
             openCourseCard = {}
         )
     }

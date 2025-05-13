@@ -59,7 +59,7 @@ fun CommonTag(
             Text(
                 text = text,
                 style = AppTheme.typography.caption,
-                color = AppTheme.colors.whiteOpacity
+                color = AppTheme.colors.white
             )
         }
     }

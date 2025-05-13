@@ -12,4 +12,7 @@ object Icons {
     val NavHome = CommonDrawables.ic_nav_home
     val NavFavorite = CommonDrawables.ic_nav_favorite
     val NavProfile = CommonDrawables.ic_nav_profile
+    val Search = CommonDrawables.ic_search
+    val Funnel = CommonDrawables.ic_funnel
+    val ArrowDownUp = CommonDrawables.ic_arrow_down_up
 }
