@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.main.ui.component.FilterContentRow
 import com.example.main.ui.component.SortComponent
 import com.example.model.CourseUI
+import com.example.resources.R
 import com.example.ui.card.CourseCard
 import com.example.ui.spacer.VerticalSpacer
 import com.example.ui.topBar.CommonContainer
@@ -22,7 +23,8 @@ import com.example.ui.topBar.TopBarState
 @Composable
 internal fun MainScreen(
     modifier: Modifier = Modifier,
-){
+) {
+    val screenType = ScreenType.Favorite
     val list = listOf(
         CourseUI(
             id = 1,
@@ -51,29 +53,35 @@ internal fun MainScreen(
                 Column(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     horizontalAlignment = Alignment.End
-                ){
-                    VerticalSpacer(height = 16.dp)
-                    FilterContentRow(
-                        value = "",
-                        onValueChange = {},
-                        openFilter = {}
-                    )
-                    VerticalSpacer(height = 16.dp)
-                    SortComponent()
+                ) {
+                    if (ScreenType.Main == screenType) {
+                        VerticalSpacer(height = 16.dp)
+                        FilterContentRow(
+                            value = "",
+                            onValueChange = {},
+                            openFilter = {}
+                        )
+                        VerticalSpacer(height = 16.dp)
+                        SortComponent()
+                    }
                 }
+            },
+            title = when (screenType) {
+                ScreenType.Main -> null
+                ScreenType.Favorite -> R.string.favorite
             }
         ),
-    ){
+    ) {
         LazyColumn(
             modifier = modifier
                 .fillMaxHeight()
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(space = 16.dp),
         ) {
-            item {
-
+            if (ScreenType.Main == screenType) {
+                item { }
             }
-            items(items = list){
+            items(items = list) {
                 CourseCard(
                     courseUI = it,
                     openCourseCard = {}
