@@ -53,6 +53,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.material3)
 
     debugApi(libs.androidx.compose.ui.tooling)
 }

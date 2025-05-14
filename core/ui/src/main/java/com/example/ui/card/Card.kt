@@ -25,14 +25,55 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.designsystem.icon.Icons
 import com.example.designsystem.theme.AppTheme
+import com.example.model.CourseInProfileUI
 import com.example.model.CourseUI
 import com.example.resources.R
 import com.example.ui.button.BookmarkButton
 import com.example.ui.button.TextButton
 import com.example.ui.button.variant.TextButtonVariant
+import com.example.ui.progress.ProgressCourse
 import com.example.ui.spacer.VerticalSpacer
 import com.example.ui.tag.CommonTag
 import com.example.ui.tag.variant.TagVariant
+
+@Composable
+fun CourseCardInProfile(
+    courseUI: CourseInProfileUI,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        shape = RoundedCornerShape(size = 16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = AppTheme.colors.darkGray
+        )
+    ) {
+        CoursePreview(
+            modifier = Modifier.padding(all = 8.dp),
+            image = courseUI.image,
+            rate = courseUI.rate,
+            startDate = courseUI.startDate,
+            isFavorite = courseUI.isFavorite,
+        )
+        VerticalSpacer(height = 16.dp)
+        Column(
+            modifier = modifier
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 16.dp)
+        ) {
+            Text(
+                text = courseUI.title,
+                color = AppTheme.colors.white,
+                style = AppTheme.typography.titleMedium
+            )
+            VerticalSpacer(height = 12.dp)
+            ProgressCourse(
+                progress = courseUI.progress,
+                numberLessons = courseUI.numberLessons,
+                completedLessons = courseUI.completedLessons,
+            )
+        }
+    }
+}
 
 @Composable
 fun CourseCard(
@@ -108,11 +149,11 @@ fun CourseCard(
 
 @Composable
 private fun CoursePreview(
-    modifier: Modifier = Modifier,
     image: String?,
     rate: String,
     startDate: String,
     isFavorite: Boolean,
+    modifier: Modifier = Modifier,
 ) {
     Box {
         AsyncImage(
@@ -177,6 +218,20 @@ private fun CourseCardPreview() {
                 price = "12 000",
             ),
             openCourseCard = {}
+        )
+        VerticalSpacer(height = 16.dp)
+        CourseCardInProfile(
+            CourseInProfileUI(
+                id = 1,
+                image = "https://i.pinimg.com/736x/b9/a7/55/b9a75516248779bead50d84c52daebf3.jpg",
+                rate = "4.9",
+                startDate = "22 Мая 2024",
+                isFavorite = true,
+                title = "Java-разработчик с нуля",
+                progress = 20,
+                numberLessons = 10,
+                completedLessons = 5
+            ),
         )
     }
 }

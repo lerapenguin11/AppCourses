@@ -18,4 +18,10 @@
     <string name="forgot_password">Забыл пароль</string>
     <string name="search_placeholder">Search courses...</string>
     <string name="sort_date">По дате добавления</string>
+    <string name="user_profile">Профиль</string>
+    <string name="write_support">Написать в поддержку</string>
+    <string name="settings">Настройки</string>
+    <string name="log_out_account">Выйти из аккаунта</string>
+    <string name="your_courses">Ваши курсы</string>
+    <string name="lessons">уроков</string>
 </resources>
