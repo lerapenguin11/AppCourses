@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,12 +34,13 @@ fun CommonContainer(
 private fun CustomTopBar(
     topBarState: TopBarState,
     modifier: Modifier = Modifier,
-){
+) {
     Surface(
         modifier = modifier
-            .background(AppTheme.colors.dark),
+            .background(AppTheme.colors.dark)
+            .statusBarsPadding(),
         color = AppTheme.colors.dark
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
@@ -49,7 +51,7 @@ private fun CustomTopBar(
                         .fillMaxWidth()
                         .heightIn(min = topBarState.minHeaderHeight.dp),
                     contentAlignment = Alignment.CenterStart
-                ){
+                ) {
                     Text(
                         text = stringResource(id = it),
                         style = AppTheme.typography.titleLarge,
@@ -58,7 +60,7 @@ private fun CustomTopBar(
                 }
             }
         }
-        if(topBarState.filterTopBar != null) {
+        if (topBarState.filterTopBar != null) {
             topBarState.filterTopBar.let { it() }
         }
 

@@ -42,6 +42,9 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
+    implementation(project(":feature:main"))
+    implementation(project(":feature:auth"))
+    implementation(project(":feature:profile"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

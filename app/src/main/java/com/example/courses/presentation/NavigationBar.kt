@@ -23,13 +23,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.designsystem.theme.AppTheme
 import com.example.navigation.BottomBarRoute
 import com.example.navigation.BottomNavigationItems
-import com.example.navigation.NavigationState
 
 @Composable
 fun BottomAppBar(
-    navigationState: NavigationState,
     navController: NavController,
     modifier: Modifier = Modifier,
+    onNavigationSelected: (String) -> Unit,
 ) {
     var selectedItemRoute: String? by rememberSaveable { mutableStateOf(BottomNavigationItems[0].route.route) }
 
@@ -53,23 +52,21 @@ fun BottomAppBar(
         NavigationBar(
             containerColor = AppTheme.colors.darkGray,
         ) {
-            BottomNavigationItems.forEach { item ->
+            BottomNavigationItems.forEach { destination ->
                 NavigationBarItem(
-                    selected = selectedItemRoute == item.route.route,
+                    selected = selectedItemRoute == destination.route.route,
                     onClick = {
-                        navigationState.navigateTo(
-                            route = item.route.route
-                        )
+                        onNavigationSelected(destination.route.route)
                     },
                     icon = {
                         Icon(
-                            painter = painterResource(item.icon),
-                            contentDescription = stringResource(item.title),
+                            painter = painterResource(destination.icon),
+                            contentDescription = stringResource(destination.title),
                         )
                     },
                     label = {
                         Text(
-                            text = stringResource(item.title),
+                            text = stringResource(destination.title),
                             style = AppTheme.typography.buttonSmall
                         )
                     },
@@ -108,6 +105,6 @@ private fun BottomBarContainer(
 private fun BottomBarPreview() {
     BottomAppBar(
         navController = rememberNavController(),
-        navigationState = NavigationState(rememberNavController())
+        onNavigationSelected = {}
     )
 }
