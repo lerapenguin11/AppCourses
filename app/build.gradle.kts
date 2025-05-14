@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -45,6 +46,25 @@ dependencies {
     implementation(project(":feature:main"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:profile"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:data-local"))
+    implementation(project(":core:data-remote"))
+
+    //Dagger
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //OkHttp
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    implementation(libs.androidx.datastore.preferences.core)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
