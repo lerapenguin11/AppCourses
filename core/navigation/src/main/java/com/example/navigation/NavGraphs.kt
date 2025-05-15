@@ -10,6 +10,10 @@ sealed class BottomBarRoute(var route: String) {
     data object Profile : BottomBarRoute("profile")
 }
 
+sealed class InitialRoute(var route: String) {
+    data object Onboarding : InitialRoute("onboarding")
+}
+
 sealed class BottomTab(
     @StringRes val title: Int,
     @DrawableRes val icon: Int,

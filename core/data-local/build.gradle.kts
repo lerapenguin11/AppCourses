@@ -36,11 +36,15 @@ android {
 dependencies {
     //Dagger
     implementation(libs.dagger)
+    implementation(project(":core:domain"))
     ksp(libs.dagger.compiler)
 
     //Room
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    //Preferences DataStore
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
