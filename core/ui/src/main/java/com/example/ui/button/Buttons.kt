@@ -119,6 +119,7 @@ fun SocialAuthButton(
 fun BookmarkButton(
     isFavorite: Boolean,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -127,6 +128,11 @@ fun BookmarkButton(
                 shape = RoundedCornerShape(size = 20.dp)
             )
             .padding(all = 6.dp)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = onClick::invoke,
+                indication = ripple(bounded = true)
+            )
     ) {
         Icon(
             painter = painterResource(id = if (isFavorite) Icons.BookmarkFill else Icons.Bookmark),
@@ -170,10 +176,12 @@ private fun ButtonsPreview() {
             )
         }
         BookmarkButton(
-            isFavorite = true
+            isFavorite = true,
+            onClick = {},
         )
         BookmarkButton(
-            isFavorite = false
+            isFavorite = false,
+            onClick = {},
         )
     }
 }

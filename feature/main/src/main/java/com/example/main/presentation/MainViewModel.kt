@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
-import kotlin.time.Duration.Companion.seconds
 
 class MainViewModel @Inject constructor(
     private val getCoursesUseCase: GetCoursesUseCase,
@@ -31,7 +30,7 @@ class MainViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val coursesUIState = getCoursesUseCase.invoke().flatMapLatest {
-        flow{
+        flow {
             it.onSuccess { courseList ->
                 val coursesUi = courseList.map { course -> course.toCourseUI() }
                 emit(value = MainUiState.Content(coursesUi))

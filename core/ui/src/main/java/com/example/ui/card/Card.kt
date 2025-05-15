@@ -53,6 +53,7 @@ fun CourseCardInProfile(
             rate = courseUI.rate,
             startDate = courseUI.startDate,
             isFavorite = courseUI.isFavorite,
+            onClick = {}
         )
         VerticalSpacer(height = 16.dp)
         Column(
@@ -80,6 +81,7 @@ fun CourseCard(
     courseUI: CourseUI,
     modifier: Modifier = Modifier,
     openCourseCard: (Int) -> Unit,
+    toggleFavorite: (CourseUI) -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(size = 16.dp),
@@ -93,6 +95,9 @@ fun CourseCard(
             rate = courseUI.rate,
             startDate = courseUI.startDate,
             isFavorite = courseUI.isFavorite,
+            onClick = {
+                toggleFavorite(courseUI)
+            }
         )
         VerticalSpacer(height = 16.dp)
         Column(
@@ -154,6 +159,7 @@ private fun CoursePreview(
     startDate: String,
     isFavorite: Boolean,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit,
 ) {
     Box {
         AsyncImage(
@@ -196,7 +202,8 @@ private fun CoursePreview(
             contentAlignment = Alignment.TopEnd
         ) {
             BookmarkButton(
-                isFavorite = isFavorite
+                isFavorite = isFavorite,
+                onClick = onClick::invoke,
             )
         }
     }
@@ -217,7 +224,8 @@ private fun CourseCardPreview() {
                 description = "Освойте backend-разработку \u2028и программирование на Java, фреймворки Spring и Maven, работу с базами данных и APIjjjjj. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании.",
                 price = "12 000",
             ),
-            openCourseCard = {}
+            openCourseCard = {},
+            toggleFavorite = {}
         )
         VerticalSpacer(height = 16.dp)
         CourseCardInProfile(

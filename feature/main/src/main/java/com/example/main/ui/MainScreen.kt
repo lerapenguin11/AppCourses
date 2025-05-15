@@ -99,7 +99,8 @@ private fun CoursesContent(
             items(items = list) {
                 CourseCard(
                     courseUI = it,
-                    openCourseCard = {}
+                    openCourseCard = {},
+                    toggleFavorite = {},
                 )
             }
         }
