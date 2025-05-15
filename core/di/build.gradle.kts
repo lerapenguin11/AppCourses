@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.main"
+    namespace = "com.example.di"
     compileSdk = 35
 
     defaultConfig {
@@ -41,19 +41,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
-    implementation(project(":core:navigation"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:di"))
-
     //Dagger
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
 
+    implementation(libs.androidx.lifecycle.viewmodel.android)
+    implementation(libs.androidx.lifecycle.viewmodel.compose.android)
+
+    implementation(libs.androidx.runtime.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

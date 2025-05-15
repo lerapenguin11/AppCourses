@@ -10,6 +10,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.OutlinedTextFieldDefaults.Container
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -32,7 +33,7 @@ internal fun SearchInput(
     value: String,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
-){
+) {
     val interactionSource = remember { MutableInteractionSource() }
     val colors = OutlinedTextFieldDefaults.colors(
         focusedContainerColor = AppTheme.colors.darkGray,
@@ -51,7 +52,7 @@ internal fun SearchInput(
         textStyle = AppTheme.typography.roboto14.copy(
             color = AppTheme.colors.whiteOpacity
         )
-    ){
+    ) {
         OutlinedTextFieldDefaults.DecorationBox(
             value = value,
             innerTextField = it,
@@ -79,12 +80,12 @@ internal fun SearchInput(
                 )
             },
             container = {
-                OutlinedTextFieldDefaults.ContainerBox(
-                    colors = colors,
-                    shape = RoundedCornerShape(size = 30.dp),
+                Container(
                     enabled = true,
                     isError = false,
                     interactionSource = interactionSource,
+                    colors = colors,
+                    shape = RoundedCornerShape(size = 30.dp),
                 )
             },
         )

@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 internal class GetCoursesUseCaseImpl @Inject constructor(private val repository: CourseRepository) :
     GetCoursesUseCase {
-    override suspend fun invoke(): Flow<ServerResult<List<Course>>> {
+    override fun invoke(): Flow<ServerResult<List<Course>>> {
         return repository.getCourses()
     }
 }

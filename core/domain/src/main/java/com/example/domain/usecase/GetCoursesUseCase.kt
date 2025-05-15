@@ -5,5 +5,5 @@ import com.example.domain.utils.ServerResult
 import kotlinx.coroutines.flow.Flow
 
 interface GetCoursesUseCase {
-    suspend operator fun invoke(): Flow<ServerResult<List<Course>>>
+    operator fun invoke(): Flow<ServerResult<List<Course>>>
 }

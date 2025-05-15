@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/core/data-local" />
             <option value="$PROJECT_DIR$/core/data-remote" />
             <option value="$PROJECT_DIR$/core/designsystem" />
+            <option value="$PROJECT_DIR$/core/di" />
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/core/resources" />

@@ -13,7 +13,7 @@ import javax.inject.Inject
 internal class CourseRepositoryImpl @Inject constructor(
     private val courseApi: CourseApi,
 ) : CourseRepository {
-    override suspend fun getCourses(): Flow<ServerResult<List<Course>>> {
+    override fun getCourses(): Flow<ServerResult<List<Course>>> {
         return flow {
             emit(
                 value = handleApi(
