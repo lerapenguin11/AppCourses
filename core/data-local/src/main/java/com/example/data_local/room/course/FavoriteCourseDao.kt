@@ -10,14 +10,14 @@ import kotlinx.coroutines.flow.Flow
 interface FavoriteCourseDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addFavoriteCourses(favoriteCoursesDbModel: FavoriteCourseEntity)
+    suspend fun addFavoriteCourse(favoriteCoursesDbModel: FavoriteCourseEntity)
 
     @Query("SELECT COUNT(*) > 0 FROM FavoriteCourseEntity WHERE courseId = :courseId")
     fun isCourseFavorite(courseId: Int): Flow<Boolean>
 
     @Query("SELECT * FROM FavoriteCourseEntity")
-    fun getFavoriteCoursesList(): Flow<List<FavoriteCourseEntity>>
+    fun getFavoriteCourses(): Flow<List<FavoriteCourseEntity>>
 
     @Query("DELETE FROM FavoriteCourseEntity WHERE courseId=:courseId")
-    suspend fun deleteFromFavorites(courseId: Int)
+    suspend fun deleteFromFavorite(courseId: Int)
 }

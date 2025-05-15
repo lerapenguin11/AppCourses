@@ -13,3 +13,15 @@ fun Course.toCourseUI() = CourseUI(
     price = price,
     description = description,
 )
+
+fun mapCourseUIWhitFavoriteCourses(course: CourseUI, idFavoriteCourses: List<Int>) = CourseUI(
+    id = course.id,
+    image = course.image,
+    title = course.title,
+    rate = course.rate,
+    startDate = course.startDate,
+    isFavorite = if (idFavoriteCourses.contains(course.id)) true else course.isFavorite,
+    description = course.description,
+    price = course.price,
+    //publishDate = course.publishDate,
+)

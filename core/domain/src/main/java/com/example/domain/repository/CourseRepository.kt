@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface CourseRepository {
 
     fun getCourses(): Flow<ServerResult<List<Course>>>
+    suspend fun changeFavoriteStatus(courseId: Int)
+    fun getFavoriteCoursesById(): Flow<List<Int>>
 }

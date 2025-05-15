@@ -64,6 +64,7 @@ internal fun MainScreen(
                 CoursesContent(
                     screenType = screenType,
                     courses = (coursesUiState as? MainUiState.Content)?.data,
+                    toggleFavorite = viewModel::changeFavoriteStatus
                 )
             }
 
@@ -85,6 +86,7 @@ private fun CoursesContent(
     screenType: ScreenType,
     courses: List<CourseUI>?,
     modifier: Modifier = Modifier,
+    toggleFavorite: (Int) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
@@ -100,9 +102,12 @@ private fun CoursesContent(
                 CourseCard(
                     courseUI = it,
                     openCourseCard = {},
-                    toggleFavorite = {},
+                    toggleFavorite = {
+                        toggleFavorite(it.id)
+                    },
                 )
             }
+            item { }
         }
     }
 }

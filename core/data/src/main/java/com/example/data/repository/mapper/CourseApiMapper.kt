@@ -14,3 +14,15 @@ fun CourseDto.mapToDomain() = Course(
     price = price,
     publishDate = publishDate,
 )
+
+fun mapCourseWhitFavoriteCourses(course: Course, idFavoriteCourses: List<Int>) = Course(
+    id = course.id,
+    image = course.image,
+    title = course.title,
+    rate = course.rate,
+    startDate = course.startDate,
+    isFavorite = if (idFavoriteCourses.contains(course.id)) true else course.isFavorite,
+    description = course.description,
+    price = course.price,
+    publishDate = course.publishDate,
+)
