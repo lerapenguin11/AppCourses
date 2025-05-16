@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -22,6 +25,7 @@ import com.example.model.CourseUI
 import com.example.resources.R
 import com.example.ui.card.CourseCard
 import com.example.ui.loading.LoadingComponent
+import com.example.ui.local.LocalSnackbarHostState
 import com.example.ui.spacer.VerticalSpacer
 import com.example.ui.topBar.CommonContainer
 import com.example.ui.topBar.TopBarState
@@ -33,6 +37,8 @@ internal fun MainScreen(
 ) {
     val screenType = viewModel.screenType.collectAsStateWithLifecycle().value
     val coursesUiState by viewModel.coursesUIState.collectAsStateWithLifecycle()
+    val snackbarHostState = LocalSnackbarHostState.current
+    val scope = rememberCoroutineScope()
 
     CommonContainer(
         topBarState = TopBarState(
@@ -70,11 +76,13 @@ internal fun MainScreen(
                 )
             }
 
-            MainUiState.ErrorInitialLoading -> {
-                println("ErrorInitialLoading")
-            }
-            MainUiState.Exception -> {
-                println("Exception")
+            MainUiState.ErrorInitialLoading, MainUiState.Exception -> {
+                val message = stringResource(id = R.string.error_loading)
+                LaunchedEffect(coursesUiState) {
+                    snackbarHostState.showSnackbar(
+                        message = message
+                    )
+                }
             }
             MainUiState.InitialLoading -> {
                 LoadingComponent()
@@ -100,9 +108,9 @@ private fun CoursesContent(
             if (ScreenType.Main == screenType) {
                 item { }
             }
-            items(items = list) {
+            items(items = list) { item ->
                 CourseCard(
-                    courseUI = it,
+                    courseUI = item,
                     openCourseCard = {},
                     toggleFavorite = {
                         toggleFavorite(it.id)

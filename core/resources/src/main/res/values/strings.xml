@@ -24,4 +24,5 @@
     <string name="log_out_account">Выйти из аккаунта</string>
     <string name="your_courses">Ваши курсы</string>
     <string name="lessons">уроков</string>
+    <string name="error_loading">Ошибка загрузки</string>
 </resources>
