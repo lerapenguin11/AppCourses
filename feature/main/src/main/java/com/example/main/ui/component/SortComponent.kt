@@ -1,9 +1,13 @@
 package com.example.main.ui.component
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -19,9 +23,15 @@ import com.example.resources.R
 @Composable
 internal fun SortComponent(
     modifier: Modifier = Modifier,
+    onClick: () -> Unit,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                onClick = onClick
+            ),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.spacedBy(space = 4.dp)
     ) {
@@ -41,5 +51,5 @@ internal fun SortComponent(
 @Preview
 @Composable
 private fun SortComponentPreview() {
-    SortComponent()
+    SortComponent(){}
 }

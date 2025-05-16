@@ -21,7 +21,7 @@ import javax.inject.Singleton
 internal interface DataStoreModule {
 
     companion object {
-        private const val dataStorePreferences = "data_store_preferences"
+        private const val appDataStorePreferences = "app_data_store_preferences"
 
         @Singleton
         @Provides
@@ -30,9 +30,9 @@ internal interface DataStoreModule {
                 corruptionHandler = ReplaceFileCorruptionHandler(
                     produceNewData = { emptyPreferences() }
                 ),
-                migrations = listOf(SharedPreferencesMigration(appContext, dataStorePreferences)),
+                migrations = listOf(SharedPreferencesMigration(appContext, appDataStorePreferences)),
                 scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
-                produceFile = { appContext.preferencesDataStoreFile(dataStorePreferences) }
+                produceFile = { appContext.preferencesDataStoreFile(appDataStorePreferences) }
             )
         }
 

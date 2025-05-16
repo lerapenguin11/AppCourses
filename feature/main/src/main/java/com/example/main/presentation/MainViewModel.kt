@@ -28,35 +28,45 @@ class MainViewModel @Inject constructor(
     private val _screenType: MutableStateFlow<ScreenType> = MutableStateFlow(ScreenType.Main)
     val screenType: StateFlow<ScreenType> = _screenType.asStateFlow()
 
-    private val _test = MutableStateFlow(false)
+    private val _isSortByPublishingDate = MutableStateFlow(false)
 
     val coursesUIState: StateFlow<MainUiState> = combine(
         getCoursesUseCase.invoke(),
         getFavoriteCoursesByIdUseCase.invoke(),
-        _test,
+        _isSortByPublishingDate,
         screenType
-    ) { coursesResult, favoriteIds, ts, screenType ->
-            when (coursesResult) {
-                is ServerResult.Success -> {
-                    val coursesUiList =
-                        coursesResult.data.map { domainCourse -> domainCourse.toCourseUI() }
-                    val updatedCoursesUiList = coursesUiList.map { courseUi ->
-                        mapCourseUIWhitFavoriteCourses(courseUi, favoriteIds)
-                    }
-                    when(screenType){
-                        ScreenType.Main -> MainUiState.Content(updatedCoursesUiList)
-                        ScreenType.Favorite -> MainUiState.Content(updatedCoursesUiList.filter { it.isFavorite })
-                    }
+    ) { coursesResult, favoriteIds, isSortByPublishingDate, screenType ->
+        when (coursesResult) {
+            is ServerResult.Success -> {
+                val baseCoursesUiList =
+                    coursesResult.data.map { domainCourse -> domainCourse.toCourseUI() }
+
+                var processedCoursesUiList = baseCoursesUiList.map { courseUi ->
+                    mapCourseUIWhitFavoriteCourses(courseUi, favoriteIds)
                 }
 
-                is ServerResult.Error -> MainUiState.ErrorInitialLoading
-                is ServerResult.Exception -> MainUiState.Exception
+                if (screenType == ScreenType.Main && isSortByPublishingDate) {
+                    processedCoursesUiList =
+                        processedCoursesUiList.sortedByDescending { it.publishDate }
+                }
+
+                when (screenType) {
+                    ScreenType.Main -> MainUiState.Content(processedCoursesUiList)
+                    ScreenType.Favorite -> {
+                        MainUiState.Content(processedCoursesUiList.filter { it.isFavorite })
+                    }
+                }
             }
-        }.stateIn(
-            scope = viewModelScope,
-            initialValue = MainUiState.InitialLoading,
-            started = SharingStarted.Lazily,
-        )
+
+            is ServerResult.Error -> MainUiState.ErrorInitialLoading
+            is ServerResult.Exception -> MainUiState.Exception
+        }
+
+    }.stateIn(
+        scope = viewModelScope,
+        initialValue = MainUiState.InitialLoading,
+        started = SharingStarted.Lazily,
+    )
 
     fun updateScreenType(screenType: ScreenType) {
         _screenType.update { screenType }
@@ -66,6 +76,9 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             changeFavoriteStatusUseCase.invoke(courseId)
         }
+    }
 
+    fun updateIsisSortByPublishingDate() {
+        _isSortByPublishingDate.update { !it }
     }
 }

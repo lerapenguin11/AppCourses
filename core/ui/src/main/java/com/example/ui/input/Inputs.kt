@@ -1,5 +1,8 @@
 package com.example.ui.input
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +30,7 @@ fun CommonInputs(
     value: String,
     placeholder: Int,
     modifier: Modifier = Modifier,
+    error: Int? = null,
     onValueChange: (String) -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -82,6 +86,20 @@ fun CommonInputs(
                 )
             },
         )
+    }
+    VerticalSpacer(height = 4.dp)
+    AnimatedVisibility(
+        visible = error != null,
+        enter = expandVertically(),
+        exit = shrinkVertically()
+    ) {
+        error?.let {
+            Text(
+                text = stringResource(id = it),
+                color = AppTheme.colors.error,
+                style = AppTheme.typography.bodyMedium,
+            )
+        }
     }
 }
 

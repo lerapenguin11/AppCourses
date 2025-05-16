@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_empty_field">*Это поле не может быть пустым</string>
+    <string name="error_mask_email">*Неверный формат электронной почты</string>
+</resources>

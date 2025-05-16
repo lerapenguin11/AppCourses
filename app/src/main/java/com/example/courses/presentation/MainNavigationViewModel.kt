@@ -1,6 +1,5 @@
 package com.example.courses.presentation
 
-import androidx.activity.result.launch
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,7 +33,6 @@ class MainNavigationViewModel @Inject constructor(private val onboardingManager:
     fun completeOnboarding() {
         viewModelScope.launch {
             onboardingManager.setOnboardingCompleted(true)
-            _startDestination.value = StartDestination.MainApp
         }
     }
 }

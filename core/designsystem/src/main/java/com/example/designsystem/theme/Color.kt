@@ -21,6 +21,7 @@ private val OrangeGradient = Brush.verticalGradient(
         Color(0xffF95D00),
     )
 )
+private val Error = Color(0xff8E0808)
 
 @Immutable
 data class ColorPalette(
@@ -35,6 +36,7 @@ data class ColorPalette(
     val blue: Color,
     val orangeGradient: Brush,
     val white: Color,
+    val error: Color,
 )
 
 val BasePalette = ColorPalette(
@@ -49,6 +51,7 @@ val BasePalette = ColorPalette(
     blue = Blue,
     orangeGradient = OrangeGradient,
     white = White,
+    error = Error,
 )
 
 val LocalColors = staticCompositionLocalOf {

@@ -90,7 +90,7 @@ fun SocialAuthButton(
     variant: SocialAuthButtonVariant,
     modifier: Modifier = Modifier,
     style: SocialAuthButtonStyleImpl = SocialAuthButtonDefault.default(),
-    onClick: () -> Unit,
+    onClick: (String) -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -103,7 +103,7 @@ fun SocialAuthButton(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(bounded = true),
-                onClick = { onClick() }
+                onClick = { onClick(variant.url) }
             ),
         contentAlignment = Alignment.Center
     ) {

@@ -10,7 +10,7 @@ import com.example.main.di.MainComponentDependenciesProvider
 
 class App : Application(), MainComponentDependenciesProvider, AppComponentDependenciesProvider {
 
-    private val appComponent: AppComponent by lazy { initializeComponent() }
+    val appComponent: AppComponent by lazy { initializeComponent() }
 
     private fun initializeComponent(): AppComponent {
         return DaggerAppComponent.factory().create(applicationContext)

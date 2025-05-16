@@ -49,7 +49,9 @@ internal fun MainScreen(
                             openFilter = {}
                         )
                         VerticalSpacer(height = 16.dp)
-                        SortComponent()
+                        SortComponent(
+                            onClick = viewModel::updateIsisSortByPublishingDate
+                        )
                     }
                 }
             },

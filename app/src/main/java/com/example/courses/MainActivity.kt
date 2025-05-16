@@ -4,10 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.ui.platform.LocalContext
-import com.example.courses.di.DaggerAppComponent
 import com.example.courses.presentation.AppHost
 import com.example.designsystem.theme.AppTheme
+import com.example.di.DaggerViewModelProvider
 
 class MainActivity : ComponentActivity() {
 
@@ -15,7 +14,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val viewModel = DaggerAppComponent.factory().create(LocalContext.current).getViewModel()
+            val viewModel =
+                DaggerViewModelProvider.daggerViewModel { (application as App).appComponent.getViewModel() }
+
             AppTheme {
                 AppHost(
                     viewModel = viewModel

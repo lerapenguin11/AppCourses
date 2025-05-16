@@ -223,6 +223,7 @@ private fun CourseCardPreview() {
                 title = "Java-разработчик с нуля",
                 description = "Освойте backend-разработку \u2028и программирование на Java, фреймворки Spring и Maven, работу с базами данных и APIjjjjj. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании.",
                 price = "12 000",
+                publishDate = ""
             ),
             openCourseCard = {},
             toggleFavorite = {}

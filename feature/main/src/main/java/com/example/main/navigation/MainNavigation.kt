@@ -11,7 +11,13 @@ import com.example.main.ui.MainScreen
 import com.example.main.ui.ScreenType
 import com.example.navigation.BottomBarRoute
 
-fun NavController.navigateToMainScreen() = navigate(route = BottomBarRoute.Home.route)
+fun NavController.navigateToMainScreen(popUpRoute: Any? = null) = navigate(route = BottomBarRoute.Home.route){
+    popUpRoute?.let {
+        popUpTo(route = it){
+            inclusive = true
+        }
+    }
+}
 
 fun NavGraphBuilder.mainScreen() {
     composable(route = BottomBarRoute.Home.route) {
